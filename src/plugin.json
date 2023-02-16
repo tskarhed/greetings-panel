@@ -4,10 +4,12 @@
   "name": "Greetings Panel",
   "id": "tskarhed-greetings-panel",
   "info": {
-    "keywords": ["panel"],
+    "keywords": [
+      "panel"
+    ],
     "description": "A panel that greets you with beautiful images",
     "author": {
-      "name": "Tskarhed"
+      "name": "Tobias Skarhed"
     },
     "logos": {
       "small": "img/logo.svg",

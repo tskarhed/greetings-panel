@@ -1,8 +1,9 @@
 import { PanelPlugin } from '@grafana/data';
 import { SimpleOptions } from './types';
-import { SimplePanel } from './components/SimplePanel';
+import { GreetingsPanel } from './components/SimplePanel';
+import { TagsEditor } from 'components/TagsEditor';
 
-export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
+export const plugin = new PanelPlugin<SimpleOptions>(GreetingsPanel).setPanelOptions((builder) => {
   return builder
     .addTextInput({
       path: 'text',
@@ -10,31 +11,30 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
       description: 'Description of panel option',
       defaultValue: 'Default value of text input option',
     })
-    .addBooleanSwitch({
-      path: 'showSeriesCount',
-      name: 'Show series counter',
-      defaultValue: false,
-    })
-    .addRadio({
-      path: 'seriesCountSize',
-      defaultValue: 'sm',
-      name: 'Series counter size',
+    .addCustomEditor({
+      id: 'phrases',
+      name: 'Phrases',
+      path: 'phrases',
+      description: 'Phrases that are randomly selected when dashboard is loaded',
+      editor: TagsEditor,
       settings: {
-        options: [
-          {
-            value: 'sm',
-            label: 'Small',
-          },
-          {
-            value: 'md',
-            label: 'Medium',
-          },
-          {
-            value: 'lg',
-            label: 'Large',
-          },
-        ],
+        inputPlaceholder: "Add phrase"
       },
-      showIf: (config) => config.showSeriesCount,
+      defaultValue: [
+        "Greetings, fellow traveler!",
+        "Cheerio!",
+        "Have beautiful day!"
+      ]
+    })
+    .addCustomEditor({
+      id: 'imageFilter',
+      name: 'Image Filter',
+      path: 'imageFilter',
+      description: 'Keywords that are used when fetching images',
+      editor: TagsEditor,
+      settings: {
+        inputPlaceholder: "Add image filter"
+      },
+      defaultValue: []
     });
 });
