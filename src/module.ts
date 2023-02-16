@@ -1,16 +1,10 @@
 import { PanelPlugin } from '@grafana/data';
-import { SimpleOptions } from './types';
-import { GreetingsPanel } from './components/SimplePanel';
+import { GreetingsOptions } from './types';
+import { GreetingsPanel } from './components/GreetingsPanel';
 import { TagsEditor } from 'components/TagsEditor';
 
-export const plugin = new PanelPlugin<SimpleOptions>(GreetingsPanel).setPanelOptions((builder) => {
+export const plugin = new PanelPlugin<GreetingsOptions>(GreetingsPanel).setPanelOptions((builder) => {
   return builder
-    .addTextInput({
-      path: 'text',
-      name: 'Simple text option',
-      description: 'Description of panel option',
-      defaultValue: 'Default value of text input option',
-    })
     .addCustomEditor({
       id: 'phrases',
       name: 'Phrases',
@@ -23,7 +17,8 @@ export const plugin = new PanelPlugin<SimpleOptions>(GreetingsPanel).setPanelOpt
       defaultValue: [
         "Greetings, fellow traveler!",
         "Cheerio!",
-        "Have beautiful day!"
+        "Have beautiful day!",
+        "Keep on rocking!"
       ]
     })
     .addCustomEditor({
