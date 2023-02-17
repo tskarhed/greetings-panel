@@ -11,6 +11,14 @@ const PANEL_CONTENT_PADDING = 8;
 
 const getStyles = (theme: GrafanaTheme2) => {
   return {
+    textContainer: css`
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      justify-content: center;
+    `,
     text: css`
       text-align: center;
       font-family: ${theme.typography.h1.fontFamily};
@@ -34,21 +42,14 @@ export const GreetingsPanel: React.FC<Props> = ({ options, width, height }) => {
   const styles = useStyles2(getStyles);
   const imageWidth = width + 2*PANEL_CONTENT_PADDING;
   const imageHeight = height + 2*PANEL_CONTENT_PADDING;
-  const filters = options.imageFilter.join(",");
+  const filters = encodeURIComponent(options.imageFilter.join(","));
   const url = `${BASE_URL}${imageWidth}x${imageHeight}/?${filters}`;
   
 
   const selectedPhrase = options.phrases[Math.floor(Math.random() * options.phrases.length)];
   return (
     <>
-    <div className={css`
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      justify-content: center;
-    `}>
+    <div className={styles.textContainer}>
       <p className={styles.text}>{selectedPhrase}</p>
     </div>
       <img
