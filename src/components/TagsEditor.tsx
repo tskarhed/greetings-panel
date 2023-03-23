@@ -7,7 +7,6 @@ interface Settings {
     inputPlaceholder: string;
 }
 const getStyles = () => css`
-    flex-direction: column-reverse;
     align-items: start;
     width: 100%;
     gap: 8px;
