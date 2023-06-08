@@ -1,6 +1,6 @@
 {
   "name": "greetings-panel",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A panel that greets you with beautiful images",
   "scripts": {
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
